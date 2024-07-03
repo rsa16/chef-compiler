@@ -7,10 +7,10 @@
 */
 
 #include <iostream>
+#include "argparse.h"
 
-int main(int argc, char *argv[]) {
-    std::cout << argv[argc - 1] << "\n";
-
+int main(int argc, char **argv) {
+    chefc::args::Parser parser{argc, argv};
 
     return 0;
 }
