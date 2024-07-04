@@ -21,14 +21,37 @@ set(CMAKE_CONFIGURATION_TYPES
 )
 
 set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED YES)
 
+set(Header_Files
+    "src/argparse.h"
+)
 set(Source_Files
     "src/main.cpp"
+    "src/argparse.cpp"
 )
 
 set(ALL_FILES
+    ${Header_Files}
     ${Source_Files}
 )
 
 add_executable(${PROJECT_NAME} ${ALL_FILES})
 
+if(MSVC)
+    target_compile_options(${PROJECT_NAME} PRIVATE
+        $<$<CONFIG:Release>:
+            /Oi;
+            /Gy
+        >   
+        /permissive-;
+        /sdl;
+        /W3;
+        /std:c++20;
+    )
+endif()
+
+target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
+target_include_directories(${PROJECT_NAME} PRIVATE
+    "${CMAKE_CURRENT_SOURCE_DIR}/src"
+)
