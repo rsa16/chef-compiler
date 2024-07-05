@@ -14,10 +14,8 @@
 #include <unordered_map>
 #include <map>
 
-namespace chefc 
-{
-    namespace args 
-    {
+namespace chefc {
+    namespace args {
         struct ArgumentList {
             std::string programName;
             std::vector<std::string> args;

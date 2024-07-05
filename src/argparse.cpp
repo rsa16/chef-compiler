@@ -12,10 +12,8 @@
 
 #include "argparse.h"
 
-namespace chefc 
-{   
-    namespace args 
-    {
+namespace chefc {   
+    namespace args {
         Parser::Parser(int argc, char** argv) 
             : m_parsedArgs(argc, argv)
             , m_args()
@@ -26,7 +24,6 @@ namespace chefc
         {
             return getOptionStructure<Flag>(name).flag;
         }
-
 
         std::string Parser::getSingleValue(std::string name)
         {
