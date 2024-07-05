@@ -8,12 +8,12 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>
 
 #include "argparse.h"
 
 namespace chefc 
-{
-    
+{   
     namespace args 
     {
         Parser::Parser(int argc, char** argv) 
@@ -48,6 +48,32 @@ namespace chefc
             return m_args[name];
         }
 
+        void Parser::print_help()
+        {
+            printf("Usage:\n");
+
+            printf("  %s [options] ", m_parsedArgs.programName);
+            for (const auto& [key, value] : m_args) { printf("<%s> ", key.c_str()); };
+            printf("\n\n");
+
+            printf("This program was created to compile the esoteric programming Chef.\n\n");
+            printf("Options:\n");
+            printf( "  %-24s %-30s \n", "--help", "Displays this help message.");
+
+            for (const auto& kv : m_options) {
+                const Option& opt = std::visit(
+                    [](const auto& opt) -> const Option& { return opt; },
+                    kv.second);
+
+                std::stringstream ss;
+                ss << "-" << opt.name;
+                if (opt.altName != "") ss << ", " << "-" << opt.altName;
+                std::string cmd = ss.str();
+
+                printf( "  %-24s %-30s \n", cmd.c_str(), opt.desc.c_str());
+            }
+        }
+
         // Utility function
         int Parser::parse()
         {
@@ -75,7 +101,14 @@ namespace chefc
             for (const auto& kv : m_args) {
                 argNames.push_back(kv.first);
             }
-            
+
+            auto it = std::find(m_parsedArgs.args.begin(), m_parsedArgs.args.end(), "--help");
+            if (it != m_parsedArgs.args.end())
+            {
+                print_help();
+                return 0;
+            }
+
             // sort arguemnts and options into separate vectors
             // check if options are valid and extra arguments are not supplied
             for (int currentIndex = 0; currentIndex < m_parsedArgs.args.size(); currentIndex++)

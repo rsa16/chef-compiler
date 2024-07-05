@@ -60,6 +60,7 @@ namespace chefc
             int parse();
 
             void addArgument(std::string name);
+            void print_help();
             
             template <typename T> 
             void addOptions(std::map<std::string, T> opts) {
