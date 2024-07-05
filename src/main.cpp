@@ -6,18 +6,13 @@
   LICENSE file in the root directory of this source tree.
 */
 
+#include "core.h"
 #include <iostream>
-#include "argparse.h"
 
 int main(int argc, char **argv)
 {
     chefc::args::Parser parser{argc, argv};
+    chefc::core::Compiler compiler{parser};
 
-    parser.addArgument("programName");
-    parser.addOptions<chefc::args::Flag>({
-        { "enable_debugging", chefc::args::Flag {"W1", "warning_1", "Enables debugging for the robot."} }
-    });
-
-    parser.parse();
     return 0;
 }

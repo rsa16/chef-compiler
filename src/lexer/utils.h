@@ -6,15 +6,13 @@
   LICENSE file in the root directory of this source tree.
 */
 
-#include "utils.h"
+#include <string>
 
 namespace chefc {
     namespace lexer {
         namespace utils {
-            std::string splitLines(std::string str)
-            {
-                return str;
-            }
+            std::string splitLines(std::string str);
+            std::string stripLine(std::string str);
         }
     }
 }

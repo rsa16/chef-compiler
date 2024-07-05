@@ -23,16 +23,34 @@ set(CMAKE_CONFIGURATION_TYPES
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED YES)
 
+####################################
+#            Lexer                 #
+####################################
+set(Lexer_Headers
+    "src/lexer/utils.h"
+)
+
+set(Lexer_Source
+    "src/lexer/utils.cpp"
+)
+
+####################################
+#            Source                #
+####################################
 set(Header_Files
     "src/argparse.h"
+    "src/core.h"
 )
 set(Source_Files
     "src/main.cpp"
+    "src/core.cpp"
     "src/argparse.cpp"
 )
 
 set(ALL_FILES
+    ${Lexer_Headers}
     ${Header_Files}
+    ${Lexer_Source}
     ${Source_Files}
 )
 
