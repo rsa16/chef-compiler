@@ -61,15 +61,16 @@ namespace chefc {
             void print_help();
             
             template <typename T> 
-            void addOptions(std::map<std::string, T> opts) {
-                for (const auto& [name, opt] : opts)
-                {
+            void addOptions(std::map<std::string, T> opts) 
+            {
+                for (const auto& [name, opt] : opts) {
                     m_options[name] = opt;
                 }
             };
 
             template <typename T1>
-            T1 getOptionStructure(std::string name) {
+            T1 getOptionStructure(std::string name) 
+            {
                 OptionVaraiant opt = m_options[name];
 
                 // Why doesn't C++ have reflection?
@@ -89,7 +90,8 @@ namespace chefc {
             std::string getArg(std::string name);
 
             template <typename T> 
-            void addOption(std::string name, T opt) {
+            void addOption(std::string name, T opt) 
+            {
                 m_options[name] = opt;
             };
 
