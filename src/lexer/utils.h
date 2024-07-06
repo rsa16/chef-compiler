@@ -7,12 +7,15 @@
 */
 
 #include <string>
+#include <vector>
 
 namespace chefc {
     namespace lexer {
         namespace utils {
-            std::string splitLines(std::string str);
-            std::string stripLine(std::string str);
+            //std::string stripLine(std::string str);
+            std::string joinLines(std::vector<std::string> lines, char delimiter = ' ');
+            std::vector<std::string> split(std::string str, char delimiter = ' ');
+            void replace(std::string& data, const std::string& match, const std::string& replaceWith);
         }
     }
 }
