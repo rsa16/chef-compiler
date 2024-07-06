@@ -14,5 +14,7 @@ int main(int argc, char **argv)
     chefc::args::Parser parser{argc, argv};
     chefc::core::Compiler compiler{parser};
 
+    compiler.preprocessFile();
+
     return 0;
 }

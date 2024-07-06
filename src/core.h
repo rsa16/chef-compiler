@@ -14,10 +14,15 @@ namespace chefc {
         class Compiler {
         public:
             Compiler(args::Parser& parser);
-            void setupCommandLine(args::Parser& parser);
 
+            int setupCommandLine(args::Parser& parser);
+            int preprocessFile();
+e
         private:
+            std::string m_fileName;
             bool m_debuggingEnabled;
+
+            std::vector<std::string> preprocessedLines;
         };
     }
 }
